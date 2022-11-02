@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles/post_page/post_page.css" />
+</head>
+<body>
+    <div class="topnav">
+        {{if .username}}
+          <a>{{.username}}</a>
+          <a href="/logout">Log out</a>
+          <a href="/">Forum</a>
+        {{else}}
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+          <a href="/">Forum</a>
+        {{end}}
+      </div>
+    <h1 class="center">Post</h1>
+    <div class="forum">
+        <h1 id="post_name" name="post_name" style="margin-left: 10px;">{{.postname}}</h1>
+        <p id="post_text" name="post_text" style="margin-left: 10px;">{{.posttext}}</p>
+        <div class="spacing">
+            <form action='/like' method="post" class="inline">
+                <textarea hidden="hidden" id="link" name="link">post_reactoion</textarea>
+                <textarea hidden="hidden" id="commentid" name="commentid">{{.postid}}</textarea>
+                <textarea hidden="hidden" id="postlink" name="postlink">/original_post/{{.postid}}</textarea>
+                <button type="submit" class="like_and_dislike">Like</button>
+                <a>{{.Like}}</a>
+            </form>
+            <form action='/dislike' method="post" class="inline">
+                <textarea hidden="hidden" id="link" name="link">post_reactoion</textarea>
+                <textarea hidden="hidden" id="commentid" name="commentid">{{.postid}}</textarea>
+                <textarea hidden="hidden" id="postlink" name="postlink">/original_post/{{.postid}}</textarea>
+                <button type="submit" class="like_and_dislike">Dislike</button>
+                <a>{{.Dislike}}</a>
+             </form>
+        </div>
+    </div>
+    {{if .username}}
+    <h1 style="margin-left: 30px;">Put your answer</h1>
+    <form action='/answer_for_forum' method="post">
+        <textarea hidden="hidden" id="postid" name="postid">{{.postid}}</textarea>
+        <textarea id="answer" name="answer" required></textarea><br>
+        <button type="submit" class="like_and_dislike" style="margin-left: 30px; margin-top: 40px;">Send</button>
+    </form>
+    {{end}}
+        {{range $index, $element := .answerdata}}
+        <div class="forum" style="margin-left: 60px; margin-top: 30px;">
+            <p id="post_text" name="post_text" style="margin-left: 10px;">{{$element.Text}}</p>
+            <div class="spacing">
+                <form action='/like' method="post" class="inline">
+                    <textarea hidden="hidden" id="link" name="link">answers_for_forum_reactoion</textarea>
+                    <textarea hidden="hidden" id="commentid" name="commentid">{{$element.ID}}</textarea>
+                    <textarea hidden="hidden" id="postlink" name="postlink">/original_post/</textarea>
+                    <button type="submit" class="like_and_dislike">Like</button>
+                    <a>{{$element.Like}}</a>
+                </form>
+                <form action='/dislike' method="post" class="inline">
+                    <textarea hidden="hidden" id="link" name="link">answers_for_forum_reactoion</textarea>
+                    <textarea hidden="hidden" id="commentid" name="commentid">{{$element.ID}}</textarea>
+                    <textarea hidden="hidden" id="postlink" name="postlink">/original_post/</textarea>
+                    <button type="submit" class="like_and_dislike">Dislike</button>
+                    <a>{{$element.Dislike}}</a>
+                </form>
+            </div>
+        </div>
+        {{end}}

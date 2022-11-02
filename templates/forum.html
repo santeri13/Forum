@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../styles/forum/forum.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      {{if .username}}
+        <a>{{.username}}</a>
+        <a href="/logout">Log out</a>
+      {{else}}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      {{end}}
+      <form method="post" action="/option">
+        <select name="option">
+          {{range $index, $element := .listdata}}
+            <option id="{{$element.ID}}" value="{{$element.Name}}">{{$element.Name}}</option>
+          {{end}}
+        </select>
+        <LABEL FOR="like">Like</LABEL>
+        <INPUT TYPE="Checkbox" Name="like" ID="like" Value="true">
+        <LABEL FOR="dislike">Dislike</LABEL>
+        <INPUT TYPE="Checkbox" Name="dislike" ID="dislike" Value="true">
+        <LABEL FOR="created_posts">Created posts</LABEL>
+        <INPUT TYPE="Checkbox" Name="created_posts" ID="created_posts" Value="true">
+        <button type="submit" class="send_button">Submit</button>
+      </form>
+    </div>
+    <h1 class="center">Forum</h1>
+    {{range $index, $element := .postdata}}
+    <div class="forum" onclick="window.location.href='/original_post/{{$element.ID}}'">
+      <h1 id="post_name" name="post_name" style="margin-left: 10px;">{{$element.Name}}</h1>
+      <div class="spacing">
+        <form action='/like' method="post" class="inline">
+          <textarea hidden="hidden" id="link" name="link">post_reactoion</textarea>
+          <textarea hidden="hidden" id="commentid" name="commentid">{{$element.ID}}</textarea>
+          <textarea hidden="hidden" id="postlink" name="postlink">/</textarea>
+          <button type="submit" class="like_and_dislike">Like</button>
+          <a>{{$element.Like}}</a>
+        </form>
+      <form action='/dislike' method="post" class="inline">
+          <textarea hidden="hidden" id="link" name="link">post_reactoion</textarea>
+          <textarea hidden="hidden" id="commentid" name="commentid">{{$element.ID}}</textarea>
+          <textarea hidden="hidden" id="postlink" name="postlink">/</textarea>
+          <button type="submit" class="like_and_dislike">Dislike</button>
+          <a>{{$element.Dislike}}</a>
+      </form>
+      </div>
+    </div>
+    {{end}}
+    {{if .username}}
+    <form action="/post_creation" class="center" style=" margin-right: 60px; ">
+      <button type="submit" class="registerbtn">Create post</button>
+    </form>
+    {{end}}
+  </body>
+</html>

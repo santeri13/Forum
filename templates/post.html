@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles/post/post.css" />
+</head>
+<body>
+    <div class="container">
+      <form action="/post_creation" method="post">
+      <label for="post_name"><b>Post name</b></label>
+      <input type="text" placeholder="Post name" name="post_name" required>
+  
+      <label for="post_text"><b>Text</b></label><br>
+      <textarea placeholder="Enter text" name="post_text" required></textarea><br>
+    
+      <label for="category"><b>Category</b></label>
+      <input type="text" placeholder="Category" name="category" required>
+      <button type="submit">Create post</button>
+      </form>
+    </div>
+</body>
+</html>

@@ -10,7 +10,7 @@ This program have several parts:
  - styles directory which include css styles for templates of webpages
  - templates directory which include templates for webpages
  - Database directory where database would be created and stored
- - go.mod and go.sum which have information about custom programms which is used in backend
+ - go.mod and go.sum which have information about custom programs which is used in backend
  - Dockerfile which create image of application for container
 
 ## Usage

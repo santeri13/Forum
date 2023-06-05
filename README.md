@@ -1,6 +1,6 @@
 # Forum
 
-This is web application which is forum.
+Web forum application.
 
 ## Containing
 

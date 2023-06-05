@@ -23,7 +23,7 @@ This program have several parts:
 
 `docker run -d -p 8080:8080 forum`
 
-Container is running, now open your webbrowser and open and type address localhost:8080
+Container is running, now open your webbrowser and type address localhost:8080
 
 ### Main file
 
